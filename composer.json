@@ -1,0 +1,6 @@
+{
+    "name":"pjdietz/webtools",
+    "autoload": {
+        "psr-0": { "pjdietz\\WebTools": "src/" }
+    }
+}

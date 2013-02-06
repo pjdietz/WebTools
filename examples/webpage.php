@@ -1,5 +1,7 @@
 <?php
 
+// TODO Update to work with refactored files
+
 // This example script is intended to give you a general strategy for how to use
 // the WebPageBase class. You'll want to break this up into several files; I
 // just kept the example all in one for simplicity.
@@ -15,26 +17,26 @@ require_once(dirname(__FILE__) . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATO
 // throughout your site.
 
 abstract class SiteWebPage extends WebPageBase {
-    
+
     // Make a new constructor to setup defaults for the site, including a better
     // doctype.
 
     public function __construct($doctype=self::DOCTYPE_HTML5) {
-        
+
         // Don't forget to call the parent constructor!
         parent::__construct($doctype);
-        
+
     }
-    
+
     // Add default metatags, stylesheets, and JavaScripts.
-    
+
     protected function htmlMeta() {
         $html = parent::htmlMeta();
         $html .= '<meta charset="utf-8" />';
         $html .= '<link rel="icon" href="/favicon.ico" type="image/x-icon" />';
         return $html;
     }
-    
+
     protected function htmlStyle() {
         $html = parent::htmlStyle();
         // Include site-wide stylesheets. You can use the built-in stylesheet,
@@ -44,21 +46,21 @@ abstract class SiteWebPage extends WebPageBase {
         $html .= $this->stylesheet('/includes.print.css', 'print');
         return $html;
     }
-    
+
     protected function htmlScript() {
         $html = parent::htmlScript();
         $html .= $this->javascript('/includes/jquery.min.js');
         $html .= $this->javascript('/includes/site.js');
         return $html;
     }
-    
+
     // Make all pages output an H1 at the that includes the page title.
     protected function htmlBodyContent() {
         $html = parent::htmlBodyContent();
         $html .= sprintf('<h1>%s</h1>', $this->title);
         return $html;
     }
-    
+
 }
 
 
@@ -69,13 +71,13 @@ abstract class SiteWebPage extends WebPageBase {
 
 class WebPage extends SiteWebPage {
 
-    // Set the variables for the page, such as the page title. 
+    // Set the variables for the page, such as the page title.
     public function __construct() {
         parent::__construct();
         // Set a title for the page.
         $this->title = 'Hello World!';
     }
-    
+
     // Return an array of attributes to add to the body element.
     // In this case, we'll add class="my-body-class".
     protected function htmlBodyAttributes() {
@@ -83,7 +85,7 @@ class WebPage extends SiteWebPage {
         $atts['class'] = 'my-body-class';
         return $atts;
     }
-     
+
     // Add the content of the page, appended after the content output site's
     // htmlBodyContent() method.
     protected function htmlBodyContent() {
